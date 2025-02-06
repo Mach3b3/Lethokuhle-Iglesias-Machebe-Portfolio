@@ -1,27 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    border:none;
+    border: none;
     outline: none;
     scroll-behavior: smooth;
     font-family: "Nunito", sans-serif;
 }
-html{
+
+html {
     font-size: 62.5%;
     overflow-x: hidden;
 }
-body{
+
+body {
     background-color: #191f36;
     color: #fff;
 }
-.home{
+
+.home {
     min-height: 100vh;
     padding: 10rem 6% 2rem;
 }
-.header{
+
+.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -33,9 +38,92 @@ body{
     align-items: center;
     z-index: 1;
 }
-.logo{
+
+.logo {
     color: #fff;
     font-size: 2.5rem;
     font-weight: 700;
     cursor: default;
+}
+
+/* Menu icon */
+#menu-icon {
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+/* Navbar inside the menu icon */
+.navbar {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    text-align: center;
+    background-color: #111629;
+    width: 100%;
+}
+
+.navbar a {
+    padding: 1rem;
+    font-size: 1.8rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Show menu when 'active' class is added */
+.navbar.active {
+    display: flex;
+}
+
+/* For larger screens, show navbar in a horizontal layout */
+@media (min-width: 768px) {
+    .navbar {
+        display: flex; /* Always display on larger screens */
+        flex-direction: row;
+        justify-content: flex-end;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        width: auto;
+    }
+
+    .navbar a {
+        padding: 0 2rem;
+        font-size: 1.6rem;
+        color: white;
+    }
+
+    #menu-icon {
+        display: none; /* Hide menu icon on larger screens */
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #111629;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1.6rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer .social-media a {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 1rem;
+    transition: 0.3s;
+}
+
+.footer .social-media a:hover {
+    color: #00aaff;
 }
