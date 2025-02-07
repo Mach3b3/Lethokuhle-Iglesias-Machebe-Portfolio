@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const menuIcon = document.getElementById("menu-icon");
-    const navbar = document.getElementById("navbar");
-
-    // Toggle the navbar visibility on menu icon click
-    menuIcon.addEventListener("click", function() {
-        navbar.classList.toggle("active");
-    });
+/*----typed js-----*/ 
+const typed=new Typed('.multiple-text',{
+    strings : ['Full Stack Developer','C# Programmer'],
+    typeSpeed: 70,
+    backSpeed: 70,
+    backDelay: 1000,
+    loop: true,
 });
+
