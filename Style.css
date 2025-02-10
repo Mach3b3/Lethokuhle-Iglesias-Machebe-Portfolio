@@ -154,10 +154,13 @@ section {
 .btn-box {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    width: 34.5rem;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    width: 100%; /* Ensure it takes full width */
     height: 5rem;
+    gap: 1rem; /* Add spacing between buttons */
 }
+
 
 .btn-box .btn {
     position: relative;
@@ -177,6 +180,18 @@ section {
     overflow: hidden;
     transition: .5s;
 }
+
+.about .btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+
+.contact .btn-box {
+    display: flex;
+    justify-content: center;
+}
+
 
 .btn-box .btn:hover {
     color: var(--main-color);
@@ -373,6 +388,10 @@ span {
 }
 .contact form .btn1{
     margin-top: 2rem;
+    cursor: pointer;
+}
+
+.contact form .btn-box.btns .btn {
     cursor: pointer;
 }
 
