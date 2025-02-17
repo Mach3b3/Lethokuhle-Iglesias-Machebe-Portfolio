@@ -1,3 +1,44 @@
+const texts = ["Web Developer", "UI/UX Designer", "JavaScript Enthusiast", "Tech Innovator"];
+let index = 0;
+const typewriterText = document.getElementById('typewriter-text-content');
+const cursor = document.getElementById('cursor');
+
+// Function to simulate typewriter effect with cursor
+function typeWriterEffect(text, i = 0) {
+    if (i < text.length) {
+        typewriterText.innerHTML += text.charAt(i);
+        setTimeout(() => typeWriterEffect(text, i + 1), 100); // Speed of typing
+    } else {
+        setTimeout(() => deleteText(text), 1000); // Wait before deleting the text
+    }
+}
+
+// Function to delete the text
+function deleteText(text) {
+    let i = text.length;
+    const interval = setInterval(() => {
+        if (i > 0) {
+            typewriterText.innerHTML = text.slice(0, i - 1);
+            i--;
+        } else {
+            clearInterval(interval);
+            setTimeout(() => nextText(), 500); // Delay before moving to the next text
+        }
+    }, 50); // Speed of deleting
+}
+
+// Function to go to the next text
+function nextText() {
+    typewriterText.innerHTML = '';
+    typeWriterEffect(texts[index]);
+    index = (index + 1) % texts.length; // Cycle through texts
+}
+
+// Start the animation
+nextText();
+
+
+
 const chatbotMessages = [
     "Hello! How can I assist you today?",
     "I can help with technical questions, web development, or just chat!",

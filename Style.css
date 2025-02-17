@@ -52,6 +52,41 @@
     border: 2px solid #bb9af7;
 }
 
+/* CSS Animation for typing */
+@keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.typewriter-container {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1.4; /* Slightly larger line height to prevent clipping */
+}
+
+.typewriter {
+    display: inline-block;
+    animation: typing 3s steps(30) 1s forwards, blink 0.75s step-end infinite;
+    border-right: 2px solid transparent; /* Hide cursor for now */
+    line-height: 1.4; /* Ensure better line height for text */
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px; /* Slightly wider cursor */
+    background-color: #fff;
+    animation: blink 1s infinite;
+    margin-left: 5px; /* Space between text and cursor */
+    vertical-align: bottom; /* Align cursor better with text */
+}
+
+
+
 
 /* CSS Animation for beating effect */
 @keyframes beat {
@@ -145,3 +180,4 @@ animation: beat 8s ease-in-out infinite;
     font-size: 1rem;
     font-weight: bold;
 }
+
