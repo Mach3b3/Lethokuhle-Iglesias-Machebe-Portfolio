@@ -11,19 +11,31 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script><!--Typed js--> 
         <script src="https://unpkg.com/scrollreveal"></script><!--Scroll Reveal-->
         <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         
     </head>
-<body>
-    <header class="header">
-        <a href="#" class="logo">Port<span>folio</span></a>
-        <i class="fa-solid fa-bars" id="menu-icon"></i>
-        <div class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
+<body class="min-h-screen bg-[#1a1b26] text-gray-300">
+    <!-- Header -->
+    <header class="fixed w-full bg-[#1a1b26] bg-opacity-90 z-50 py-4">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">
+                <span class="text-white">port</span><span class="text-[#bb9af7]">folio</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-gray-300 hover:text-[#bb9af7] transition-colors">About</a>
+                <a href="#education" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Education</a>
+                <a href="#experience" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Experience</a>
+                <a href="#projects" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Contact</a>
+                <a href="#" class="border border-[#bb9af7] text-[#bb9af7] px-4 py-2 rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse">
+                    Resume
+                </a>
+            </div>
+            <button class="md:hidden text-gray-300 hover:text-[#bb9af7]">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
     </header>
 
     <!-- Home Section Design -->
