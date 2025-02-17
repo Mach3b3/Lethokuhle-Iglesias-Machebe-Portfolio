@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script><!--Typed js--> 
-        <script src="https://unpkg.com/scrollreveal"></script><!--Scroll Reveal-->
         <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -24,8 +23,8 @@
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="#about" class="text-gray-300 hover:text-[#bb9af7] transition-colors">About</a>
-                <a href="#education" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Education</a>
-                <a href="#experience" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Experience</a>
+                <a href="#skills" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Skills</a>
+                <a href="#education" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Education & Experience</a>
                 <a href="#projects" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Projects</a>
                 <a href="#contact" class="text-gray-300 hover:text-[#bb9af7] transition-colors">Contact</a>
                 <a href="#" class="border border-[#bb9af7] text-[#bb9af7] px-4 py-2 rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse">
@@ -67,7 +66,6 @@
 </section>
 
 <!-- About Me -->
-
 <section id="about" class="container mx-auto px-4 py-20">
     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">About <span class="text-[#bb9af7]">Me</span></h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -112,8 +110,11 @@
     </div>
 </section>
 
-<section class="skills">
-    <h2 class="heading">My <span>Skills</span><span class="animate scroll" style="--i:1;"></span></h2>
+
+<!-- Skills -->
+
+<section id="skills" class="skills">
+    <h2 class="text-5xl font-bold mb-12 text-center text-white">My <span class="text-[#bb9af7]">Skills</span></h2>
     
     <div class="skills-container">
         <div class="skill-card" title="HTML5">
@@ -136,9 +137,9 @@
             <i class="fab fa-react"></i>
             <p>React</p>
         </div>
-        <div class="skill-card" title="Django">
-            <i class="fab fa-django"></i>
-            <p>Django</p>
+        <div class="skill-card" title="Android">
+            <i class="fab fa-android"></i>
+            <p>Android</p>
         </div>
         <div class="skill-card" title="GitHub">
             <i class="fab fa-github"></i>
@@ -152,46 +153,75 @@
             <i class="fas fa-code"></i>
             <p>C#</p>
         </div>
+        <div class="skill-card" title="Linux">
+            <i class="fab fa-linux"></i>
+            <p>Linux</p>
+        </div>
     </div>
 </section>
 
 
-    <!-- Education and Experience Section -->
-    <section id="education" class="container mx-auto px-4 py-20">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Education & Experience</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <div class="container-card">
+
+<!-- Education and Experience Section -->
+<section id="education" class="container mx-auto px-4 py-20">
+    <h2 class="text-5xl font-bold mb-12 text-center text-white">Education & <span class="text-[#bb9af7]">Experience</span></h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Education Column -->
+        <div class="space-y-8">
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2025 - Present</span>
                 <h3 class="text-xl font-bold text-white">Honors Degree (In Progress)</h3>
                 <p class="text-gray-400">Currently pursuing an Honors degree in Information Technology at Central University of Technology.</p>
             </div>
-            <div class="container-card">
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2024</span>
                 <h3 class="text-xl font-bold text-white">Advanced Diploma in IT</h3>
                 <p class="text-gray-400">Graduated with an advanced diploma in IT from Central University of Technology.</p>
             </div>
-            <div class="container-card">
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2023</span>
                 <h3 class="text-xl font-bold text-white">Diploma in IT</h3>
                 <p class="text-gray-400">Completed a diploma in IT at Central University of Technology, gaining a strong foundation in technical skills.</p>
             </div>
-            <div class="container-card">
-                <h3 class="text-xl font-bold text-white">Supplementary Instructor</h3>
-                <p class="text-gray-400">Appointed as a supplementary instructor for technical programming, helping students improve their coding skills.</p>
-            </div>
-            <div class="container-card">
+        </div>
+        <!-- Experience Column -->
+        <div class="space-y-8">
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2024 - Present</span>
                 <h3 class="text-xl font-bold text-white">Full-stack Trainee</h3>
-                <p class="text-gray-400">Currently learning full-stack development at UVU Africa, gaining skills in HTML, CSS, JavaScript, Django, React, and Python.</p>
+                <ul class="text-gray-400 list-disc pl-5">
+                    <li>Learning full-stack development at UVU Africa.</li>
+                    <li>Gaining experience with technologies like HTML, CSS, JavaScript, Django, React, and Python.</li>
+                    <li>Working on hands-on projects to build practical skills in both front-end and back-end development.</li>
+                </ul>
             </div>
-            <div class="container-card">
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2024</span>
+                <h3 class="text-xl font-bold text-white">Supplementary Instructor</h3>
+                <ul class="text-gray-400 list-disc pl-5">
+                    <li>Assisted students in improving their coding skills in technical programming.</li>
+                    <li>Provided additional support outside of regular lectures.</li>
+                    <li>Created supplementary materials to reinforce learning.</li>
+                </ul>
+            </div>
+            <div class="container-card relative">
+                <span class="absolute top-0 right-0 text-[#bb9af7] text-sm mt-2 mr-4">2022 - 2023</span>
                 <h3 class="text-xl font-bold text-white">Lab Assistant Experience</h3>
-                <p class="text-gray-400">Worked as a lab assistant at Central University of Technology, helping students with hands-on technical skills.</p>
+                <ul class="text-gray-400 list-disc pl-5">
+                    <li>Assisted students with technical programming and lab exercises.</li>
+                    <li>Provided guidance on solving coding problems and debugging issues.</li>
+                    <li>Helped set up and maintain lab environments for practical sessions.</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
     
 <!-- Projects Section -->
 <section id="projects" class="container mx-auto px-4 py-20">
-    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Featured Projects</h2>
+    <h2 class="text-5xl font-bold mb-12 text-center text-white">Featured <span class="text-[#bb9af7]">Projects</span></h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <!-- Project 1 -->
@@ -274,59 +304,88 @@
 
 
 
-    <section class="contact" id="contact">
-        <h2 class="heading">Get In <span>Touch</span></h2>
-        <form id="contact-form" onsubmit="sendEmail(event)">
-            <div class="input-box">
-                <input type="text" id="name" name="name" placeholder="Full Name" required>
-                <input type="email" id="email" name="email" placeholder="Email Address" required>
+<!-- Contact Section -->
+<section id="contact" class="container mx-auto px-4 py-20">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-5xl font-bold mb-12 text-center text-white">Contact <span class="text-[#bb9af7]">Me</span></h2>
+        <form class="bg-[#24283b] p-8 rounded-lg space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" placeholder="Full Name" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
+                <input type="email" placeholder="Email" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
             </div>
-            <div class="input-box">
-                <input type="number" id="mobnum" name="mobnum" placeholder="Mobile Number" required>
-                <input type="text" id="subject" name="subject" placeholder="Email Subject" required>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" placeholder="Subject" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
+                <input type="tel" placeholder="Cell Number" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
             </div>
-            <textarea id="message" name="message" rows="10" cols="30" placeholder="Your Message" required></textarea>
-            <div class="btn-box btns">
-                <button type="submit" class="btn">Submit</button>
-
-                <span class="animate scroll" style="--i:9;"></span>
+            <textarea rows="6" placeholder="Your Message" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3"></textarea>
+            <div class="flex justify-center">
+                <button class="bg-[#bb9af7] text-[#1a1b26] py-3 px-6 rounded-lg hover:bg-[#a28cfc] transition-colors">
+                    Send Message
+                </button>
             </div>
         </form>
-    </section>
+    </div>
+</section>
+<!-- footer design -->
 
-        <!-- Chatbot Widget -->
+<footer class="bg-[#1a1b26] py-8">
+    <div class="container mx-auto text-center text-gray-400">
+        <p class="text-sm">&copy; 2025 Lethokuhle Iglesias Machebe. All rights reserved.</p>
+    </div>
+    <div class="home-sci flex justify-center space-x-6 mt-4">
+        <a href="https://github.com/Mach3b3" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fa-brands fa-github text-2xl"></i>
+        </a>
+        <a href="https://x.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fa-brands fa-twitter text-2xl"></i>
+        </a>
+        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fa-brands fa-instagram text-2xl"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/lethokuhle-machebe/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fa-brands fa-linkedin-in text-2xl"></i>
+        </a>
+    </div>
+</footer>
 
-        <div id="chatbot">
-            <div id="chatbot-header">
-                <h4>Alexis Neels</h4>
-                <i class="fas fa-times" id="chatbot-close"></i>
-                <!-- Clear Chat Icon -->
-                <i class="fas fa-trash" id="chatbot-clear"></i>
-            </div>
-            <div id="chatbot-body">
-                <p>Hi! How can I help you today?</p>
-            </div>
-            <div id="chatbot-input">
-                <input type="text" id="chatbot-text" placeholder="Type your message...">
-                <button id="chatbot-send">Send</button>
-            </div>
-        </div>
-             
 
-    <!-- footer design -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>© 2025 Lethokuhle Iglesias Machebe. All rights reserved.</p>
-            <div class="home-sci">
-                <a href="https://github.com/Mach3b3" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/lethokuhle-machebe/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <span class="animate" style="--i:7;"></span>
-            </div>
-        </div>
-    </footer>
+
+<!-- Chatbot Widget -->
     
+    <!-- Chat Button -->
+    <button id="chat-toggle" class="fixed bottom-4 right-4 bg-[#bb9af7] text-[#1a1b26] w-12 h-12 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+        <i class="fas fa-comments text-xl"></i>
+    </button>
+
+<!-- Chatbot Section -->
+<section id="chatbot" class="fixed bottom-6 right-6 bg-[#24283b] rounded-lg p-4 shadow-lg z-50" style="display: none;">
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-white font-bold">Chatbot</h3>
+        <div class="flex space-x-2">
+            <!-- Clear Button with onclick event -->
+            <button id="clear-chat" class="border border-[#bb9af7] text-[#bb9af7] px-1 py-0.5 text-sm rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse flex items-center justify-center" onclick="clearChat()">
+                Clear
+            </button>
+            
+            <button id="close-chat" class="text-[#bb9af7] hover:text-white text-3xl"> <!-- Increased size and purple color -->
+                <i class="fas fa-times"></i> <!-- Close icon -->
+            </button>
+        </div>
+    </div>
+    <div id="chat-box" class="bg-[#1a1b26] text-gray-300 p-4 rounded-lg h-60 overflow-y-auto mb-4">
+        <!-- Chat messages will appear here -->
+    </div>
+    <div class="flex items-center">
+        <input type="text" id="user-input" class="w-full bg-[#1a1b26] border border-[#bb9af7] text-gray-300 rounded-lg p-3" placeholder="Ask me anything..." />
+        <button id="send-btn" class="ml-4 text-[#bb9af7] hover:text-white p-3 text-2xl">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+</section>
+
+
+
+
 <script src="script.js"></script>  
 </body>
 </html>

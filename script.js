@@ -1,103 +1,74 @@
-// typed js
-const typed = new Typed('.multiple-text', {
-    strings: ['Full Stack Developer', 'C# Programmer'],
-    typeSpeed: 70,
-    backSpeed: 70,
-    backDelay: 1000,
-    loop: true,
-});
+const chatbotMessages = [
+    "Hello! How can I assist you today?",
+    "I can help with technical questions, web development, or just chat!",
+    "Feel free to ask me anything."
+];
 
-// Function to display current date and time
-function updateDateTime() {
-    const dateElement = document.getElementById("current-date");
-    const timeElement = document.getElementById("current-time");
+let chatIndex = 0;
+const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const closeChatBtn = document.getElementById('close-chat');
+const clearChatBtn = document.getElementById('clear-chat');
+const chatToggleBtn = document.getElementById('chat-toggle');
+const chatbotSection = document.getElementById('chatbot');
 
-    const currentDate = new Date();
-    
-    // Format the date
-    const options = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    };
-    const formattedDate = currentDate.toLocaleDateString('en-US', options);
-    
-    // Format the time
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const seconds = currentDate.getSeconds();
-    const ampm = hours >= 12 ? 'pm' : 'am';
-    
-    const formattedTime = `${String((hours % 12) || 12).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${ampm}`;
-
-    // Display date and time
-    dateElement.textContent = formattedDate;
-    timeElement.textContent = formattedTime;
+// Function to display the chatbot's messages
+function displayChatMessage(message, sender = 'bot') {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add(sender === 'bot' ? 'bg-[#24283b]' : 'bg-[#bb9af7]', 'text-white', 'rounded-lg', 'p-2', 'my-2', 'max-w-xs', sender === 'bot' ? 'ml-4' : 'mr-4');
+    messageDiv.innerText = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Update every second
-setInterval(updateDateTime, 1000);
+// Send user input and receive bot response
+function sendMessage() {
+    const message = userInput.value.trim();
+    if (message !== '') {
+        displayChatMessage(message, 'user');
+        userInput.value = '';
+        setTimeout(() => {
+            if (chatIndex < chatbotMessages.length) {
+                displayChatMessage(chatbotMessages[chatIndex]);
+                chatIndex++;
+            } else {
+                displayChatMessage("Sorry, I'm out of responses. Ask something else!", 'bot');
+            }
+        }, 1000);
+    }
+}
 
-// Initial call to display the date and time immediately
-updateDateTime();
+// Trigger message on clicking send button
+sendBtn.addEventListener('click', sendMessage);
 
-// Chatbot Toggle functionality
-const chatbot = document.getElementById('chatbot');
-const chatbotToggle = document.getElementById('chatbot-toggle');
-const chatbotClose = document.getElementById('chatbot-close');
-const chatbotClear = document.getElementById('chatbot-clear');
-const chatbotBody = document.getElementById('chatbot-body');
+// Trigger message on pressing Enter
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Close chatbot interface
+closeChatBtn.addEventListener('click', () => {
+    chatbotSection.style.display = 'none';
+});
 
 // Toggle chatbot visibility
-chatbotToggle.addEventListener('click', () => {
-    // If the chatbot is hidden, show it and hide the toggle button
-    if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-        chatbot.style.display = 'block';
+chatToggleBtn.addEventListener('click', () => {
+    if (chatbotSection.style.display === 'none' || chatbotSection.style.display === '') {
+        chatbotSection.style.display = 'block';
     } else {
-        chatbot.style.display = 'none';
+        chatbotSection.style.display = 'none';
     }
 });
 
-// Close chatbot
-chatbotClose.addEventListener('click', () => {
-    chatbot.style.display = 'none'; // Hide the chatbot
+// Clear chat history
+clearChatBtn.addEventListener('click', () => {
+    chatBox.innerHTML = ''; // Clear the chat messages
+    displayChatMessage("Chat history cleared!", 'bot'); // Optional: Add a bot response when cleared
 });
 
-// Clear the chat
-chatbotClear.addEventListener('click', () => {
-    chatbotBody.innerHTML = '<p>Hi! How can I help you today?</p>'; // Reset chat content
-});
-
-// Optional: Send message functionality (implementing the send button)
-const chatbotSend = document.getElementById('chatbot-send');
-const chatbotText = document.getElementById('chatbot-text');
-
-chatbotSend.addEventListener('click', () => {
-    const message = chatbotText.value.trim();
-    if (message) {
-        const userMessage = document.createElement('p');
-        userMessage.textContent = `You: ${message}`;
-        chatbotBody.appendChild(userMessage);
-        chatbotText.value = ''; // Clear the input field
-        chatbotBody.scrollTop = chatbotBody.scrollHeight; // Scroll to the latest message
-    }
-});
-
-
-// Contact Form (EmailJS)
-function sendEmail(event) {
-    event.preventDefault();
-
-    emailjs.send("service_xxxxxx", "template_xxxxxx", {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        mobnum: document.getElementById("mobnum").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value
-    }).then(function(response) {
-        alert("Message Sent Successfully!");
-        document.getElementById("contact-form").reset();
-    }, function(error) {
-        alert("Failed to send message. Please try again.");
-    });
-}
+// Display initial bot message
+displayChatMessage(chatbotMessages[chatIndex]);
+chatIndex++;
