@@ -15,7 +15,9 @@
         
     </head>
 <body class="min-h-screen bg-[#1a1b26] text-gray-300">
-<!-- Header -->
+
+
+    <!-- Header -->
 <header class="fixed w-full bg-[#1a1b26] bg-opacity-90 z-50 py-4">
     <nav class="container mx-auto px-4 flex justify-between items-center">
         <a href="#" class="text-2xl font-bold">
@@ -31,21 +33,22 @@
                 Resume
             </a>
         </div>
-        <!-- Mobile Menu Button -->
-        <button class="md:hidden text-gray-300 hover:text-[#bb9af7]" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <button class="md:hidden text-gray-300 hover:text-[#bb9af7]" onclick="toggleMobileMenu()">
             <i class="fas fa-bars text-xl"></i>
         </button>
     </nav>
 </header>
-
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 right-0 bg-[#1a1b26] py-4">
-    <a href="#about" class="block text-gray-300 hover:text-[#bb9af7] px-4 py-2">About</a>
-    <a href="#skills" class="block text-gray-300 hover:text-[#bb9af7] px-4 py-2">Skills & Tools</a>
-    <a href="#education" class="block text-gray-300 hover:text-[#bb9af7] px-4 py-2">Education & Experience</a>
-    <a href="#projects" class="block text-gray-300 hover:text-[#bb9af7] px-4 py-2">Projects</a>
-    <a href="#contact" class="block text-gray-300 hover:text-[#bb9af7] px-4 py-2">Contact</a>
-    <a href="https://drive.google.com/file/d/1xnb6WrA1-K3dtAMhVw7712DPwN2utvhB/view?usp=sharing" class="block border border-[#bb9af7] text-[#bb9af7] px-4 py-2 rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse">
+<div id="mobile-menu" class="hidden md:hidden absolute top-0 left-0 right-0 bg-[#1a1b26] py-4 z-100">
+    <button class="text-gray-300 hover:text-[#bb9af7] text-2xl absolute top-4 right-4" onclick="toggleMobileMenu()">
+        <i class="fas fa-times"></i> <!-- Close icon -->
+    </button>
+    <a href="#about" class="block text-gray-300 hover:text-[#bb9af7] py-2 text-center">About</a>
+    <a href="#skills" class="block text-gray-300 hover:text-[#bb9af7] py-2 text-center">Skills & Tools</a>
+    <a href="#education" class="block text-gray-300 hover:text-[#bb9af7] py-2 text-center">Education & Experience</a>
+    <a href="#projects" class="block text-gray-300 hover:text-[#bb9af7] py-2 text-center">Projects</a>
+    <a href="#contact" class="block text-gray-300 hover:text-[#bb9af7] py-2 text-center">Contact</a>
+    <a href="https://drive.google.com/file/d/1xnb6WrA1-K3dtAMhVw7712DPwN2utvhB/view?usp=sharing" class="block max-w-[200px] mx-auto border border-[#bb9af7] text-[#bb9af7] px-4 py-2 rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse text-center">
         Resume
     </a>
 </div>
@@ -353,6 +356,7 @@
             <span class="tech-badge">HTML</span>
             <span class="tech-badge">CSS</span>
             <span class="tech-badge">Animation</span>
+            <span class="tech-badge">JavaScript</span>
             <span class="tech-badge">GitHub</span>
         </div>
     </div>
@@ -396,24 +400,30 @@
 <section id="contact" class="container mx-auto px-4 py-20">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-5xl font-bold mb-12 text-center text-white">Contact <span class="text-[#bb9af7]">Me</span></h2>
-        <form class="bg-[#24283b] p-8 rounded-lg space-y-6">
+        <form id="contact-form" class="bg-[#24283b] p-8 rounded-lg space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" placeholder="Full Name" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
-                <input type="email" placeholder="Email" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
+                <input type="text" id="full-name" name="full-name" placeholder="Full Name" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3" required>
+                <input type="email" id="email" name="email" placeholder="Email" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3" required>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" placeholder="Subject" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
-                <input type="tel" placeholder="Cell Number" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3">
+                <input type="text" id="subject" name="subject" placeholder="Subject" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3" required>
+                <input type="tel" id="phone" name="phone" placeholder="Cell Number" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3" required>
             </div>
-            <textarea rows="6" placeholder="Your Message" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3"></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Your Message" class="w-full bg-[#1a1b26] border border-[#bb9af7] rounded-lg p-3" required></textarea>
             <div class="flex justify-center">
-                <button class="bg-[#bb9af7] text-[#1a1b26] py-3 px-6 rounded-lg hover:bg-[#a28cfc] transition-colors">
+                <button type="submit" class="bg-[#bb9af7] text-[#1a1b26] py-3 px-6 rounded-lg hover:bg-[#a28cfc] transition-colors">
                     Send Message
                 </button>
             </div>
         </form>
     </div>
 </section>
+
+
+
+
+
+
 <!-- footer design -->
 
 <footer class="bg-[#1a1b26] py-8">
@@ -424,26 +434,23 @@
         <a href="https://github.com/Mach3b3" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
             <i class="fa-brands fa-github text-2xl"></i>
         </a>
-        <a href="https://x.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="https://x.com/Lethokuhle_mac" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
             <i class="fa-brands fa-twitter text-2xl"></i>
         </a>
-        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="https://www.instagram.com/lethokuhle_iglesias_machebe/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
             <i class="fa-brands fa-instagram text-2xl"></i>
         </a>
-        <a href="https://www.linkedin.com/in/lethokuhle-machebe/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="https://www.linkedin.com/in/lethokuhle-iglesias-machebe-b85749237/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
             <i class="fa-brands fa-linkedin-in text-2xl"></i>
         </a>
     </div>
 </footer>
 
-
-
 <!-- Chatbot Widget -->
-    
-    <!-- Chat Button -->
-    <button id="chat-toggle" class="fixed bottom-4 right-4 bg-[#bb9af7] text-[#1a1b26] w-12 h-12 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-        <i class="fas fa-comments text-xl"></i>
-    </button>
+<!-- Chat Button -->
+<button id="chat-toggle" class="fixed bottom-4 right-4 bg-[#bb9af7] text-[#1a1b26] w-12 h-12 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+    <i class="fas fa-comments text-xl"></i>
+</button>
 
 <!-- Chatbot Section -->
 <section id="chatbot" class="fixed bottom-6 right-6 bg-[#24283b] rounded-lg p-4 shadow-lg z-50" style="display: none;">
@@ -471,7 +478,121 @@
     </div>
 </section>
 
+<script>
+// OpenAI API key (replace this with your actual API key)
+const OPENAI_API_KEY = 'YOUR-API-KEY-HERE';
 
+// Chatbot messages to start the conversation
+const chatbotMessages = [
+    "Hello! How can I assist you today?",
+    "I can help with technical questions, web development, or just chat!",
+    "Feel free to ask me anything."
+];
+
+let chatIndex = 0;
+const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const closeChatBtn = document.getElementById('close-chat');
+const clearChatBtn = document.getElementById('clear-chat');
+const chatToggleBtn = document.getElementById('chat-toggle');
+const chatbotSection = document.getElementById('chatbot');
+
+// Function to display chatbot's messages
+function displayChatMessage(message, sender = 'bot') {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add(sender === 'bot' ? 'bg-[#24283b]' : 'bg-[#bb9af7]', 'text-white', 'rounded-lg', 'p-2', 'my-2', 'max-w-xs', sender === 'bot' ? 'ml-4' : 'mr-4');
+    messageDiv.innerText = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Send user input and receive bot response
+async function sendMessage() {
+    const message = userInput.value.trim();
+    if (message !== '') {
+        displayChatMessage(message, 'user');
+        userInput.value = '';
+
+        // Get response from GPT-3
+        const response = await getGPT3Response(message);
+
+        setTimeout(() => {
+            displayChatMessage(response);
+        }, 1000);
+    }
+}
+
+// Function to get response from OpenAI GPT-3.5 API
+async function getGPT3Response(userMessage) {
+    try {
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",  // Chat model
+                messages: [
+                    { role: 'system', content: "You are a helpful assistant." },  // System message
+                    { role: 'user', content: userMessage }  // User message
+                ],
+                max_tokens: 150,
+                temperature: 0.7,
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);  // Log the response for debugging
+
+        if (data.choices && data.choices.length > 0) {
+            console.log("Response from OpenAI:", data.choices[0].message.content.trim());  // Log the actual response
+            return data.choices[0].message.content.trim();
+        } else {
+            console.error("API did not return valid choices:", data);
+            return "Sorry, I couldn't understand that. Try again!";
+        }
+    } catch (error) {
+        console.error('Error with GPT-3 API:', error);
+        return 'Something went wrong. Please try again later.';
+    }
+}
+
+// Trigger message on clicking send button
+sendBtn.addEventListener('click', sendMessage);
+
+// Trigger message on pressing Enter
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Close chatbot interface
+closeChatBtn.addEventListener('click', () => {
+    chatbotSection.style.display = 'none';
+});
+
+// Toggle chatbot visibility
+chatToggleBtn.addEventListener('click', () => {
+    if (chatbotSection.style.display === 'none' || chatbotSection.style.display === '') {
+        chatbotSection.style.display = 'block';
+    } else {
+        chatbotSection.style.display = 'none';
+    }
+});
+
+// Clear chat history
+clearChatBtn.addEventListener('click', () => {
+    chatBox.innerHTML = ''; // Clear the chat messages
+    displayChatMessage("Chat history cleared!", 'bot'); // Optional: Add a bot response when cleared
+});
+
+// Display initial bot message
+displayChatMessage(chatbotMessages[chatIndex]);
+chatIndex++;
+</script>
 
 
 <script src="script.js"></script>  

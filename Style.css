@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap');
 
 
+#mobile-menu {
+    z-index: 100; /* Make it higher to ensure it appears above all content */
+    position: fixed; /* Position it fixed to the top */
+    top: 0; /* Align it to the top */
+}
+
+body {
+    position: relative; /* Ensure body content stays below the menu */
+    z-index: 1;
+}
+
+
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

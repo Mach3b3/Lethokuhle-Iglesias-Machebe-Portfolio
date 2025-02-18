@@ -1,4 +1,31 @@
-const texts = ["Web Developer", "UI/UX Designer", "JavaScript Enthusiast", "Tech Innovator"];
+    // Add event listener to the form submission
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+        // Collect data from the form
+        const fullName = document.getElementById('full-name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+
+        // Construct the mailto link
+        const mailtoLink = `mailto:lethumachebe@gmail.com?subject=${encodeURIComponent(subject)}&body=Name: ${encodeURIComponent(fullName)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0APhone: ${encodeURIComponent(phone)}%0D%0AMessage: ${encodeURIComponent(message)}`;
+
+        // Redirect to the mailto link
+        window.location.href = mailtoLink;
+});
+
+
+const texts = [
+    "Web Developer",
+    "Full-Stack Developer",
+    "React Enthusiast",
+    "Flutter Developer",
+    "Tech Innovator",
+    "Problem Solver"
+];
+    
 let index = 0;
 const typewriterText = document.getElementById('typewriter-text-content');
 const cursor = document.getElementById('cursor');
@@ -37,7 +64,10 @@ function nextText() {
 // Start the animation
 nextText();
 
-
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById("mobile-menu");
+    mobileMenu.classList.toggle("hidden");
+}
 
 const chatbotMessages = [
     "Hello! How can I assist you today?",
@@ -54,6 +84,8 @@ const clearChatBtn = document.getElementById('clear-chat');
 const chatToggleBtn = document.getElementById('chat-toggle');
 const chatbotSection = document.getElementById('chatbot');
 
+const OPENAI_API_KEY = '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'; // Replace with your OpenAI API Key
+
 // Function to display the chatbot's messages
 function displayChatMessage(message, sender = 'bot') {
     const messageDiv = document.createElement('div');
@@ -64,19 +96,52 @@ function displayChatMessage(message, sender = 'bot') {
 }
 
 // Send user input and receive bot response
-function sendMessage() {
+async function sendMessage() {
     const message = userInput.value.trim();
     if (message !== '') {
         displayChatMessage(message, 'user');
         userInput.value = '';
+        
+        // Get response from GPT-3
+        const response = await getGPT3Response(message);
+
         setTimeout(() => {
-            if (chatIndex < chatbotMessages.length) {
-                displayChatMessage(chatbotMessages[chatIndex]);
-                chatIndex++;
-            } else {
-                displayChatMessage("Sorry, I'm out of responses. Ask something else!", 'bot');
-            }
+            displayChatMessage(response);
         }, 1000);
+    }
+}
+
+// Function to get response from OpenAI GPT-3.5 API
+async function getGPT3Response(userMessage) {
+    try {
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",  // Chat model
+                messages: [
+                    { role: 'system', content: "You are a helpful assistant." },  // System message
+                    { role: 'user', content: userMessage }  // User message
+                ],
+                max_tokens: 150,
+                temperature: 0.7,
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);  // Log the response for debugging
+
+        if (data.choices && data.choices.length > 0) {
+            return data.choices[0].message.content.trim();
+        } else {
+            return "Sorry, I couldn't understand that. Try again!";
+        }
+    } catch (error) {
+        console.error('Error with GPT-3 API:', error);
+        return 'Something went wrong. Please try again later.';
     }
 }
 
