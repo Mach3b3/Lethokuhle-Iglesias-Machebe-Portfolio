@@ -181,3 +181,27 @@ animation: beat 8s ease-in-out infinite;
     font-weight: bold;
 }
 
+        
+/* Project Card Template */
+
+    .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(187, 154, 247, 0.4);
+    }
+    .tech-badge {
+        border: 1px solid #bb9af7;
+        color: #bb9af7;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: background 0.3s ease;
+    }
+    .tech-badge:hover {
+        background: rgba(187, 154, 247, 0.1);
+    }
+    .icon-large {
+        font-size: 1.5rem;
+    }
+
