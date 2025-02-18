@@ -69,112 +69,169 @@ function toggleMobileMenu() {
     mobileMenu.classList.toggle("hidden");
 }
 
-const chatbotMessages = [
-    "Hello! How can I assist you today?",
-    "I can help with technical questions, web development, or just chat!",
-    "Feel free to ask me anything."
-];
 
-let chatIndex = 0;
-const chatBox = document.getElementById('chat-box');
-const userInput = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
-const closeChatBtn = document.getElementById('close-chat');
-const clearChatBtn = document.getElementById('clear-chat');
-const chatToggleBtn = document.getElementById('chat-toggle');
-const chatbotSection = document.getElementById('chatbot');
+const chatBox = document.querySelector("#chat-box");
+const userInput = document.querySelector("#user-input");
+const sendButton = document.querySelector("#send-btn");
+const closeChatButton = document.querySelector("#close-chat");
+const chatToggleButton = document.querySelector("#chat-toggle");
 
-const OPENAI_API_KEY = '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'; // Replace with your OpenAI API Key
+const dialogResponses = {
+    "hello": "Hello! How can I assist you today?",
+    "how are you": "I'm just a bot, but I'm here to help you!",
+    "experience": "Here's my experience: <br> 1. Former lab assistant at Central University of Technology <br> 2. Full-stack trainee at UVU Africa, learning HTML, CSS, JavaScript, React, Python, and Android <br> 3. Samsung Innovation Campus Graduate in Machine Learning, Artificial Intelligence, and IoT <br> 4. App developer with a focus on building apps using Flutter, and experience with setting up servers using Hyper-V, Linux, and Windows.",
+    "skills": "I excel in Python, SQL, Pandas, Power BI, Matplotlib, Flutter, and full-stack development. I also have experience in setting up servers, data analysis, and application development.",
+    "contact": "You can email me at lethumachebe@gmail.com or call me at +27 060 653 5664.",
+    "services": "I specialize in creating dynamic applications, building data-driven solutions, and offering full-stack development services. I enjoy building innovative apps and providing tech solutions using modern technologies like Flutter, Python, and SQL.",
+    "education": "I graduated with a Diploma in IT from Central University of Technology, and I completed my advanced diploma last year. I am currently pursuing my honors degree in IT.",
+    "about": "I'm Lethokuhle Iglesias Machebe, a passionate developer and tech enthusiast with a focus on full-stack development, machine learning, and data analysis. I have a strong foundation in IT, and I love solving problems through code. My experience includes working as a lab assistant, a full-stack trainee, and building impactful solutions as part of various projects, including my portfolio and the BOOKConnect app. I believe in the power of innovation and constantly seek to grow and learn in the tech world.",
+    "where are you located?": "I am based in Emalahleni Local Municipality, South Africa.",
+    "profile": "Welcome to my portfolio website! It showcases my work and skills in software development, data analysis, and app development, including my projects in Flutter and server management. Feel free to explore my projects and get in touch with me!",
+    "socials": "You can connect with me on social media! Follow me on Twitter (@Lethokuhle_mac) or check out my projects on GitHub (Mach3b3)."
+};
 
-// Function to display the chatbot's messages
-function displayChatMessage(message, sender = 'bot') {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add(sender === 'bot' ? 'bg-[#24283b]' : 'bg-[#bb9af7]', 'text-white', 'rounded-lg', 'p-2', 'my-2', 'max-w-xs', sender === 'bot' ? 'ml-4' : 'mr-4');
-    messageDiv.innerText = message;
-    chatBox.appendChild(messageDiv);
+const createMessageElement = (content, ...classes) => {
+    const div = document.createElement("div");
+    div.classList.add("message", ...classes);
+    div.innerHTML = content;
+    return div;
+};
+
+const generateBotResponse = async (userMessage) => {
+    let botResponse = dialogResponses[userMessage.toLowerCase()] || "I'm sorry, I couldn't understand that. Can you please rephrase?";
+    return botResponse;
+};
+
+const toggleChatbot = () => {
+    const chatbotSection = document.querySelector("#chatbot");
+    chatbotSection.classList.toggle("hidden");
+};
+
+const clearChatHistory = () => {
+    chatBox.innerHTML = "";  // Clear the chat messages
+};
+
+sendButton.addEventListener("click", async () => {
+    const userMessage = userInput.value;
+    if (userMessage.trim() === "") return;
+
+    const userMessageDiv = createMessageElement(userMessage, "user-message");
+    chatBox.appendChild(userMessageDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
-}
+    userInput.value = "";
 
-// Send user input and receive bot response
-async function sendMessage() {
-    const message = userInput.value.trim();
-    if (message !== '') {
-        displayChatMessage(message, 'user');
-        userInput.value = '';
-        
-        // Get response from GPT-3
-        const response = await getGPT3Response(message);
-
-        setTimeout(() => {
-            displayChatMessage(response);
-        }, 1000);
-    }
-}
-
-// Function to get response from OpenAI GPT-3.5 API
-async function getGPT3Response(userMessage) {
-    try {
-        const res = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",  // Chat model
-                messages: [
-                    { role: 'system', content: "You are a helpful assistant." },  // System message
-                    { role: 'user', content: userMessage }  // User message
-                ],
-                max_tokens: 150,
-                temperature: 0.7,
-            })
-        });
-
-        const data = await res.json();
-        console.log(data);  // Log the response for debugging
-
-        if (data.choices && data.choices.length > 0) {
-            return data.choices[0].message.content.trim();
-        } else {
-            return "Sorry, I couldn't understand that. Try again!";
-        }
-    } catch (error) {
-        console.error('Error with GPT-3 API:', error);
-        return 'Something went wrong. Please try again later.';
-    }
-}
-
-// Trigger message on clicking send button
-sendBtn.addEventListener('click', sendMessage);
-
-// Trigger message on pressing Enter
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
+    const botResponse = await generateBotResponse(userMessage);
+    const incomingMessageDiv = createMessageElement(botResponse, "bot-message");
+    chatBox.appendChild(incomingMessageDiv);
+    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
 });
 
-// Close chatbot interface
-closeChatBtn.addEventListener('click', () => {
-    chatbotSection.style.display = 'none';
+chatToggleButton.addEventListener("click", toggleChatbot);
+closeChatButton.addEventListener("click", () => {
+    document.querySelector("#chatbot").classList.add("hidden");
+    clearChatHistory();  // Clear the chat history when closing the chat
 });
 
-// Toggle chatbot visibility
-chatToggleBtn.addEventListener('click', () => {
-    if (chatbotSection.style.display === 'none' || chatbotSection.style.display === '') {
-        chatbotSection.style.display = 'block';
-    } else {
-        chatbotSection.style.display = 'none';
-    }
-});
 
-// Clear chat history
-clearChatBtn.addEventListener('click', () => {
-    chatBox.innerHTML = ''; // Clear the chat messages
-    displayChatMessage("Chat history cleared!", 'bot'); // Optional: Add a bot response when cleared
-});
 
-// Display initial bot message
-displayChatMessage(chatbotMessages[chatIndex]);
-chatIndex++;
+// // Initialize OpenAI
+// const openai = new OpenAI({
+//     apiKey: '',
+//     dangerouslyAllowBrowser: true
+// });
+
+// // DOM Elements
+// const chatBox = document.querySelector("#chat-box");
+// const userInput = document.querySelector("#user-input");
+// const sendButton = document.querySelector("#send-btn");
+// const closeChatButton = document.querySelector("#close-chat");
+// const chatToggleButton = document.querySelector("#chat-toggle");
+// const chatIcon = document.querySelector("#chat-icon");
+
+// // Predefined responses for fallback
+// const dialogResponses = {
+//     "hello": "Hello! How can I assist you today?",
+//     "how are you": "I'm just a bot, but I'm here to help you!",
+//     "experience": "Here's my experience: <br> 1. Former lab assistant at Central University of Technology <br> 2. Full-stack trainee at UVU Africa, learning HTML, CSS, JavaScript, React, Python, and Android <br> 3. Samsung Innovation Campus Graduate in Machine Learning, Artificial Intelligence, and IoT <br> 4. App developer with a focus on building apps using Flutter, and experience with setting up servers using Hyper-V, Linux, and Windows.",
+//     "skills": "I excel in Python, SQL, Pandas, Power BI, Matplotlib, Flutter, and full-stack development. I also have experience in setting up servers, data analysis, and application development.",
+//     "contact": "You can email me at lethumachebe@gmail.com or call me at +27 060 653 5664.",
+//     "services": "I specialize in creating dynamic applications, building data-driven solutions, and offering full-stack development services. I enjoy building innovative apps and providing tech solutions using modern technologies like Flutter, Python, and SQL.",
+//     "education": "I graduated with a Diploma in IT from Central University of Technology, and I completed my advanced diploma last year. I am currently pursuing my honors degree in IT.",
+//     "about": "I'm Lethokuhle Iglesias Machebe, a passionate developer and tech enthusiast with a focus on full-stack development, machine learning, and data analysis. I have a strong foundation in IT, and I love solving problems through code. My experience includes working as a lab assistant, a full-stack trainee, and building impactful solutions as part of various projects, including my portfolio and the BOOKConnect app. I believe in the power of innovation and constantly seek to grow and learn in the tech world.",
+//     "where are you located?": "I am based in Emalahleni Local Municipality, South Africa.",
+//     "profile": "Welcome to my portfolio website! It showcases my work and skills in software development, data analysis, and app development, including my projects in Flutter and server management. Feel free to explore my projects and get in touch with me!",
+//     "socials": "You can connect with me on social media! Follow me on Twitter (@Lethokuhle_mac) or check out my projects on GitHub (Mach3b3)."
+// };
+
+// // Create message element
+// const createMessageElement = (content, ...classes) => {
+//     const div = document.createElement("div");
+//     div.classList.add("message", ...classes);
+//     div.innerHTML = content;
+//     return div;
+// };
+
+// // Generate bot response using OpenAI
+// const generateBotResponse = async (userMessage) => {
+//     let botResponse = dialogResponses[userMessage.toLowerCase()] || "I'm sorry, I couldn't understand that. Can you please rephrase?";
+//     try {
+//         const completion = await openai.chat.completions.create({
+//             messages: [
+//                 { role: "system", content: "You are a helpful assistant named Alexis. Keep responses concise and professional." },
+//                 { role: "user", content: userMessage }
+//             ],
+//             model: "gpt-3.5-turbo",
+//             temperature: 0.7,
+//             max_tokens: 150
+//         });
+
+//         botResponse = completion.choices[0].message.content;
+//     } catch (error) {
+//         console.error("OpenAI Error:", error);
+//         botResponse = "I'm having trouble connecting to the server. Please try again later.";
+//     }
+//     return botResponse;
+// };
+
+// // Toggle chat visibility and change icon
+// const toggleChatbot = () => {
+//     const chatbotSection = document.querySelector("#chatbot");
+//     chatbotSection.classList.toggle("hidden");
+
+//     // Toggle the chat icon
+//     if (chatbotSection.classList.contains("hidden")) {
+//         chatIcon.classList.remove("fa-times");
+//         chatIcon.classList.add("fa-comments");
+//     } else {
+//         chatIcon.classList.remove("fa-comments");
+//         chatIcon.classList.add("fa-times");
+//     }
+// };
+
+// // Clear chat history
+// const clearChatHistory = () => {
+//     chatBox.innerHTML = "";
+// };
+
+// // Event listeners
+// sendButton.addEventListener("click", async () => {
+//     const userMessage = userInput.value;
+//     if (userMessage.trim() === "") return;
+
+//     const userMessageDiv = createMessageElement(userMessage, "user-message");
+//     chatBox.appendChild(userMessageDiv);
+//     chatBox.scrollTop = chatBox.scrollHeight;
+//     userInput.value = "";
+
+//     const botResponse = await generateBotResponse(userMessage);
+//     const incomingMessageDiv = createMessageElement(botResponse, "bot-message");
+//     chatBox.appendChild(incomingMessageDiv);
+//     chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+// });
+
+// chatToggleButton.addEventListener("click", toggleChatbot);
+// closeChatButton.addEventListener("click", () => {
+//     document.querySelector("#chatbot").classList.add("hidden");
+//     clearChatHistory();
+// });
+

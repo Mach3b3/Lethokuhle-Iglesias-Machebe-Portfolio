@@ -216,3 +216,48 @@ animation: beat 8s ease-in-out infinite;
     }
     
 
+
+    /* Chat bubble styles */
+    .message {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.5;
+        display: inline-block;
+    }
+    
+    .user-message {
+        background-color: #bb9af7;
+        color: #1a1b26;
+        align-self: flex-end;
+        border-top-right-radius: 0;
+        margin-left: auto;
+    }
+    
+    .bot-message {
+        background-color: #444c56;
+        color: #fff;
+        align-self: flex-start;
+        border-top-left-radius: 0;
+        margin-right: auto;
+    }
+    
+    #chat-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Input area styling */
+    #user-input {
+        font-size: 14px;
+    }
+    
+    /* Button hover effect */
+    button:hover {
+        transition: background-color 0.3s ease;
+    }
+
+    

@@ -446,29 +446,21 @@
     </div>
 </footer>
 
-<!-- Chatbot Widget -->
 <!-- Chat Button -->
 <button id="chat-toggle" class="fixed bottom-4 right-4 bg-[#bb9af7] text-[#1a1b26] w-12 h-12 rounded-full flex items-center justify-center shadow-lg animate-pulse">
     <i class="fas fa-comments text-xl"></i>
 </button>
 
 <!-- Chatbot Section -->
-<section id="chatbot" class="fixed bottom-6 right-6 bg-[#24283b] rounded-lg p-4 shadow-lg z-50" style="display: none;">
+<section id="chatbot" class="fixed bottom-6 right-6 bg-[#24283b] rounded-lg p-4 shadow-lg z-50 hidden">
     <div class="flex justify-between items-center mb-4">
-        <h3 class="text-white font-bold">Chatbot</h3>
-        <div class="flex space-x-2">
-            <!-- Clear Button with onclick event -->
-            <button id="clear-chat" class="border border-[#bb9af7] text-[#bb9af7] px-1 py-0.5 text-sm rounded hover:bg-[#bb9af7]/10 transition-all animate-pulse flex items-center justify-center" onclick="clearChat()">
-                Clear
-            </button>
-            
-            <button id="close-chat" class="text-[#bb9af7] hover:text-white text-3xl"> <!-- Increased size and purple color -->
-                <i class="fas fa-times"></i> <!-- Close icon -->
-            </button>
-        </div>
+        <h3 class="text-white font-bold">Alexis</h3>
+        <button id="close-chat" class="text-[#bb9af7] hover:text-white text-3xl">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
     <div id="chat-box" class="bg-[#1a1b26] text-gray-300 p-4 rounded-lg h-60 overflow-y-auto mb-4">
-        <!-- Chat messages will appear here -->
+        <!-- Chat messages appear here -->
     </div>
     <div class="flex items-center">
         <input type="text" id="user-input" class="w-full bg-[#1a1b26] border border-[#bb9af7] text-gray-300 rounded-lg p-3" placeholder="Ask me anything..." />
@@ -477,123 +469,6 @@
         </button>
     </div>
 </section>
-
-<script>
-// OpenAI API key (replace this with your actual API key)
-const OPENAI_API_KEY = 'YOUR-API-KEY-HERE';
-
-// Chatbot messages to start the conversation
-const chatbotMessages = [
-    "Hello! How can I assist you today?",
-    "I can help with technical questions, web development, or just chat!",
-    "Feel free to ask me anything."
-];
-
-let chatIndex = 0;
-const chatBox = document.getElementById('chat-box');
-const userInput = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
-const closeChatBtn = document.getElementById('close-chat');
-const clearChatBtn = document.getElementById('clear-chat');
-const chatToggleBtn = document.getElementById('chat-toggle');
-const chatbotSection = document.getElementById('chatbot');
-
-// Function to display chatbot's messages
-function displayChatMessage(message, sender = 'bot') {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add(sender === 'bot' ? 'bg-[#24283b]' : 'bg-[#bb9af7]', 'text-white', 'rounded-lg', 'p-2', 'my-2', 'max-w-xs', sender === 'bot' ? 'ml-4' : 'mr-4');
-    messageDiv.innerText = message;
-    chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-// Send user input and receive bot response
-async function sendMessage() {
-    const message = userInput.value.trim();
-    if (message !== '') {
-        displayChatMessage(message, 'user');
-        userInput.value = '';
-
-        // Get response from GPT-3
-        const response = await getGPT3Response(message);
-
-        setTimeout(() => {
-            displayChatMessage(response);
-        }, 1000);
-    }
-}
-
-// Function to get response from OpenAI GPT-3.5 API
-async function getGPT3Response(userMessage) {
-    try {
-        const res = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",  // Chat model
-                messages: [
-                    { role: 'system', content: "You are a helpful assistant." },  // System message
-                    { role: 'user', content: userMessage }  // User message
-                ],
-                max_tokens: 150,
-                temperature: 0.7,
-            })
-        });
-
-        const data = await res.json();
-        console.log(data);  // Log the response for debugging
-
-        if (data.choices && data.choices.length > 0) {
-            console.log("Response from OpenAI:", data.choices[0].message.content.trim());  // Log the actual response
-            return data.choices[0].message.content.trim();
-        } else {
-            console.error("API did not return valid choices:", data);
-            return "Sorry, I couldn't understand that. Try again!";
-        }
-    } catch (error) {
-        console.error('Error with GPT-3 API:', error);
-        return 'Something went wrong. Please try again later.';
-    }
-}
-
-// Trigger message on clicking send button
-sendBtn.addEventListener('click', sendMessage);
-
-// Trigger message on pressing Enter
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
-
-// Close chatbot interface
-closeChatBtn.addEventListener('click', () => {
-    chatbotSection.style.display = 'none';
-});
-
-// Toggle chatbot visibility
-chatToggleBtn.addEventListener('click', () => {
-    if (chatbotSection.style.display === 'none' || chatbotSection.style.display === '') {
-        chatbotSection.style.display = 'block';
-    } else {
-        chatbotSection.style.display = 'none';
-    }
-});
-
-// Clear chat history
-clearChatBtn.addEventListener('click', () => {
-    chatBox.innerHTML = ''; // Clear the chat messages
-    displayChatMessage("Chat history cleared!", 'bot'); // Optional: Add a bot response when cleared
-});
-
-// Display initial bot message
-displayChatMessage(chatbotMessages[chatIndex]);
-chatIndex++;
-</script>
-
 
 <script src="script.js"></script>  
 </body>
