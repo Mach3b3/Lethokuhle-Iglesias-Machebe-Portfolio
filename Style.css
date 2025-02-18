@@ -201,7 +201,5 @@ animation: beat 8s ease-in-out infinite;
     .tech-badge:hover {
         background: rgba(187, 154, 247, 0.1);
     }
-    .icon-large {
-        font-size: 1.5rem;
-    }
+    
 
