@@ -1,6 +1,3 @@
-"# Lethokuhle-Iglesias-Machebe-Portfolio" 
-
-
 🏆 Lethokuhle Iglesias Machebe - Portfolio
 Welcome to my portfolio repository! This is a showcase of my technical skills, projects, and achievements as a full-stack developer, data analyst, and AI enthusiast.
 
