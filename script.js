@@ -77,18 +77,69 @@ const closeChatButton = document.querySelector("#close-chat");
 const chatToggleButton = document.querySelector("#chat-toggle");
 
 const dialogResponses = {
+    // Greeting variations
     "hello": "Hello! How can I assist you today?",
+    "hi": "Hello! How can I assist you today?",
+    "hy": "Hello! How can I assist you today?",
+    "hey": "Hello! How can I assist you today?",
+    
+    // How are you
     "how are you": "I'm just a bot, but I'm here to help you!",
+    "how's it going": "I'm just a bot, but I'm here to help you!",
+    "how are you doing": "I'm just a bot, but I'm here to help you!",
+
+    // Experience
     "experience": "Here's my experience: <br> 1. Former lab assistant at Central University of Technology <br> 2. Full-stack trainee at UVU Africa, learning HTML, CSS, JavaScript, React, Python, and Android <br> 3. Samsung Innovation Campus Graduate in Machine Learning, Artificial Intelligence, and IoT <br> 4. App developer with a focus on building apps using Flutter, and experience with setting up servers using Hyper-V, Linux, and Windows.",
+    "what's your experience": "Here's my experience: <br> 1. Former lab assistant at Central University of Technology <br> 2. Full-stack trainee at UVU Africa, learning HTML, CSS, JavaScript, React, Python, and Android <br> 3. Samsung Innovation Campus Graduate in Machine Learning, Artificial Intelligence, and IoT <br> 4. App developer with a focus on building apps using Flutter, and experience with setting up servers using Hyper-V, Linux, and Windows.",
+    "experience details": "Here's my experience: <br> 1. Former lab assistant at Central University of Technology <br> 2. Full-stack trainee at UVU Africa, learning HTML, CSS, JavaScript, React, Python, and Android <br> 3. Samsung Innovation Campus Graduate in Machine Learning, Artificial Intelligence, and IoT <br> 4. App developer with a focus on building apps using Flutter, and experience with setting up servers using Hyper-V, Linux, and Windows.",
+    
+    // Skills
     "skills": "I excel in Python, SQL, Pandas, Power BI, Matplotlib, Flutter, and full-stack development. I also have experience in setting up servers, data analysis, and application development.",
+    "what are your skills": "I excel in Python, SQL, Pandas, Power BI, Matplotlib, Flutter, and full-stack development. I also have experience in setting up servers, data analysis, and application development.",
+    
+    // Contact information
     "contact": "You can email me at lethumachebe@gmail.com or call me at +27 060 653 5664.",
+    "how can I contact you": "You can email me at lethumachebe@gmail.com or call me at +27 060 653 5664.",
+    
+    // Services
     "services": "I specialize in creating dynamic applications, building data-driven solutions, and offering full-stack development services. I enjoy building innovative apps and providing tech solutions using modern technologies like Flutter, Python, and SQL.",
+    "what services do you offer": "I specialize in creating dynamic applications, building data-driven solutions, and offering full-stack development services. I enjoy building innovative apps and providing tech solutions using modern technologies like Flutter, Python, and SQL.",
+    
+    // Education
     "education": "I graduated with a Diploma in IT from Central University of Technology, and I completed my advanced diploma last year. I am currently pursuing my honors degree in IT.",
+    "what's your education": "I graduated with a Diploma in IT from Central University of Technology, and I completed my advanced diploma last year. I am currently pursuing my honors degree in IT.",
+    
+    // About me
     "about": "I'm Lethokuhle Iglesias Machebe, a passionate developer and tech enthusiast with a focus on full-stack development, machine learning, and data analysis. I have a strong foundation in IT, and I love solving problems through code. My experience includes working as a lab assistant, a full-stack trainee, and building impactful solutions as part of various projects, including my portfolio and the BOOKConnect app. I believe in the power of innovation and constantly seek to grow and learn in the tech world.",
+    "who are you": "I'm Lethokuhle Iglesias Machebe, a passionate developer and tech enthusiast with a focus on full-stack development, machine learning, and data analysis. I have a strong foundation in IT, and I love solving problems through code. My experience includes working as a lab assistant, a full-stack trainee, and building impactful solutions as part of various projects, including my portfolio and the BOOKConnect app. I believe in the power of innovation and constantly seek to grow and learn in the tech world.",
+    
+    // Location
     "where are you located?": "I am based in Emalahleni Local Municipality, South Africa.",
+    "where do you live": "I am based in Emalahleni Local Municipality, South Africa.",
+    
+    // Profile
     "profile": "Welcome to my portfolio website! It showcases my work and skills in software development, data analysis, and app development, including my projects in Flutter and server management. Feel free to explore my projects and get in touch with me!",
-    "socials": "You can connect with me on social media! Follow me on Twitter (@Lethokuhle_mac) or check out my projects on GitHub (Mach3b3)."
+    
+    // Socials
+    "socials": "You can connect with me on social media! Follow me on Twitter (@Lethokuhle_mac) or check out my projects on GitHub (Mach3b3).",
+    
+    // Hobbies and Interests
+    "hobbies": "In my free time, I enjoy exploring new technologies, learning about AI and machine learning, experimenting with app development, and staying up to date with tech trends. I also like reading books and staying active through sports.",
+    "what do you do for fun": "In my free time, I enjoy exploring new technologies, learning about AI and machine learning, experimenting with app development, and staying up to date with tech trends. I also like reading books and staying active through sports.",
+    
+    // Projects
+    "projects": "I have worked on several projects, including my portfolio website and the BOOKConnect app. Some of my other projects include a data analysis tool for student performance and a Flutter-based to-do list app. Feel free to check out my GitHub for more projects!",
+    
+    // Tech Interests
+    "tech interests": "I am particularly interested in Machine Learning, Artificial Intelligence, IoT, Full-Stack Development, and Flutter. I am passionate about how technology can solve real-world problems and how emerging technologies can shape the future of development.",
+    
+    // Future Goals
+    "future goals": "My future goals include advancing my skills in machine learning and AI, improving my full-stack development abilities, and building scalable, data-driven applications. I also aim to collaborate with like-minded developers and contribute to impactful open-source projects.",
+    
+    // Motivation
+    "motivation": "My motivation comes from the desire to learn and create impactful solutions. I believe in continuous improvement and staying adaptable to the rapidly evolving tech industry. Every challenge I face is an opportunity to grow."
 };
+
 
 const createMessageElement = (content, ...classes) => {
     const div = document.createElement("div");
