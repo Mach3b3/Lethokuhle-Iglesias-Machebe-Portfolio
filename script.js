@@ -114,8 +114,8 @@ const dialogResponses = {
     "who are you": "I'm Lethokuhle Iglesias Machebe, a passionate developer and tech enthusiast with a focus on full-stack development, machine learning, and data analysis. I have a strong foundation in IT, and I love solving problems through code. My experience includes working as a lab assistant, a full-stack trainee, and building impactful solutions as part of various projects, including my portfolio and the BOOKConnect app. I believe in the power of innovation and constantly seek to grow and learn in the tech world.",
     
     // Location
-    "where are you located?": "I am based in Emalahleni Local Municipality, South Africa.",
-    "where do you live": "I am based in Emalahleni Local Municipality, South Africa.",
+    "where are you located?": "I am based in Mpumalanga, Nkomazi to be Precise, South Africa.",
+    "where do you live":  "I am based in Mpumalanga, Nkomazi to be Precise, South Africa.",
     
     // Profile
     "profile": "Welcome to my portfolio website! It showcases my work and skills in software development, data analysis, and app development, including my projects in Flutter and server management. Feel free to explore my projects and get in touch with me!",
